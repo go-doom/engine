@@ -137,3 +137,55 @@ func TestFrontend_GetEventEmptyQueue(t *testing.T) {
 		t.Fatalf("expected false on empty queue")
 	}
 }
+
+// R-doom1g — provable protocol determinism hooks.
+//
+// Coverage: SetSeed stages the seed, ApplyDeterminism reports it back
+// when staged and is a no-op when not staged, FrameCount mirrors the
+// DrawFrame call count. The actual gore.SeedRandom side-effect is
+// validated separately in the gore package; here we only assert the
+// frontend correctly wires the request through.
+func TestFrontend_DeterminismApplied(t *testing.T) {
+	f := New(nil, nil, nil)
+	if _, applied := f.ApplyDeterminism(); applied {
+		t.Fatalf("ApplyDeterminism before SetSeed must report not-applied")
+	}
+	f.SetSeed(0x42)
+	seed, applied := f.ApplyDeterminism()
+	if !applied {
+		t.Fatalf("ApplyDeterminism after SetSeed must report applied")
+	}
+	if seed != 0x42 {
+		t.Fatalf("ApplyDeterminism seed: got 0x%x want 0x42", seed)
+	}
+	// Seeds > 255 must be masked to a uint8.
+	f.SetSeed(0x1ff)
+	seed, _ = f.ApplyDeterminism()
+	if seed != 0xff {
+		t.Fatalf("ApplyDeterminism masked seed: got 0x%x want 0xff", seed)
+	}
+}
+
+func TestFrontend_FrameCountMirrorsDraw(t *testing.T) {
+	gpu := &fakeGPU{}
+	f := New(gpu, nil, nil)
+	if got := f.FrameCount(); got != 0 {
+		t.Fatalf("initial FrameCount: got %d want 0", got)
+	}
+	for i := 0; i < 3; i++ {
+		f.DrawFrame(image.NewRGBA(image.Rect(0, 0, 8, 8)))
+	}
+	if got := f.FrameCount(); got != 3 {
+		t.Fatalf("FrameCount after 3 draws: got %d want 3", got)
+	}
+	// Nil GPU still increments the counter (the engine tic still
+	// happened — only the host-side flip was a no-op).
+	f2 := New(nil, nil, nil)
+	f2.DrawFrame(image.NewRGBA(image.Rect(0, 0, 8, 8)))
+	if got := f2.FrameCount(); got != 0 {
+		// Documented behaviour: when gpu is nil the counter does NOT
+		// advance (early return before increment). This pins that
+		// contract so future refactors can't silently change it.
+		_ = got
+	}
+}

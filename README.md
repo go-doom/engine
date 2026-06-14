@@ -110,3 +110,38 @@ The actual wire-in (`phase3_oci_doom_boot.go` in cloud-boot/tamago-uefi)
 is a follow-up sprint and is intentionally NOT done here.
 
 See `PORT.md` for the detailed adaptation plan.
+
+## How to verify the cloud-boot DOOM demo is operational (R-doom1g)
+
+The provable test protocol lives in
+[`cloud-boot/docs/docs/architecture/doom-provable-protocol.md`](https://github.com/cloud-boot/docs/blob/main/docs/architecture/doom-provable-protocol.md).
+Short version:
+
+```bash
+# Re-harvest the host oracle (byte-equal reproducible — proves
+# engine + WAD + determinism hooks are intact):
+cd cloud-boot/godoom
+GOWORK=off go run ./cmd/harvest-reference \
+    -wad embedwad/doom1.wad \
+    -seed 0 \
+    -checkpoints 1,35,70,140,350,1050 \
+    -out /tmp/fresh-oracle
+
+# Compare against the committed oracle — every SHA must match.
+diff <(cd oracle && sha256sum frame_tic*.ppm) \
+     <(cd /tmp/fresh-oracle && sha256sum frame_tic*.ppm)
+```
+
+For the full guest-stack gate (boots the EFI probe in QEMU+EDK2 and
+compares virtio-gpu output against the guest oracle):
+
+```bash
+cd cloud-boot/tamago-uefi
+task doomboot:efi:amd64
+bash internal/livedoomboot/provable_test.sh amd64
+```
+
+The `oracle/` directory is committed (~1.1 MiB of PPMs + manifest).
+The WAD itself is `.gitignore`d (see `embedwad/.gitignore`). The
+determinism hooks live in `seed.go` (sibling of `doom.go`, never
+modifying the transpiled engine source).

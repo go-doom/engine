@@ -72,6 +72,16 @@ type Frontend struct {
 	in         Input
 	title      string
 	frameCount uint64 // R-doom1b: tracks DG_DrawFrame call count for diag visibility
+
+	// R-doom1g (provable protocol): deterministic seed + tic-locked clock
+	// for the harvest-reference and provable_test.sh runners. When
+	// SetSeed has been called, Frontend.ApplyDeterminism (invoked by
+	// the embedding probe just before gore.Run) wires the seed + clock
+	// reset into the engine. Default behaviour (no SetSeed call) is the
+	// unchanged wall-clock + zero-seed startup, so existing callers
+	// retain bit-for-bit current behaviour.
+	deterministicSet bool
+	seed             uint8
 }
 
 // New returns a Frontend wired to the given devices. Any of gpu, snd, or in
@@ -80,6 +90,51 @@ type Frontend struct {
 // go-virtio drivers are still being implemented in sibling sprints.
 func New(gpu GPU, snd Sound, in Input) *Frontend {
 	return &Frontend{gpu: gpu, snd: snd, in: in}
+}
+
+// SetSeed records a deterministic PRNG seed for the next ApplyDeterminism
+// call. seed is the starting index into DOOM's 256-entry random table
+// (values outside 0..255 are taken modulo 256 by [godoom.SeedRandom]).
+//
+// R-doom1g rationale: the engine's p_Random / m_Random are pure table
+// lookups indexed by prndindex / rndindex — once you fix the starting
+// index, the entire random sequence is byte-for-byte reproducible. This
+// is the first of the two deterministic prerequisites the provable
+// protocol depends on (the other is the tic-locked clock, which
+// ApplyDeterminism enables via [godoom.SetDeterministicTics]).
+//
+// Calling SetSeed AFTER ApplyDeterminism / gore.Run has no effect on the
+// already-running engine; it only stages a seed for the next
+// ApplyDeterminism invocation.
+func (f *Frontend) SetSeed(seed uint64) {
+	f.seed = uint8(seed & 0xff)
+	f.deterministicSet = true
+}
+
+// ApplyDeterminism installs the staged seed + switches the engine to
+// tic-locked mode + zeroes the tic counter. It MUST be called before
+// [godoom.Run]. It is a no-op when SetSeed was not invoked, preserving
+// historical wall-clock + zero-seed behaviour for callers that do not
+// participate in the provable protocol.
+//
+// Returns the actual seed installed and whether determinism was applied,
+// for logging by the embedding probe.
+func (f *Frontend) ApplyDeterminism() (seed uint8, applied bool) {
+	if !f.deterministicSet {
+		return 0, false
+	}
+	godoom.SetDeterministicTics(true)
+	godoom.ResetClock()
+	godoom.SeedRandom(f.seed)
+	return f.seed, true
+}
+
+// FrameCount returns the number of DrawFrame calls observed so far.
+// Useful for the harvest-reference tool and provable test runner to
+// correlate DG_DrawFrame invocations with checkpoint tics without
+// reaching into private engine state.
+func (f *Frontend) FrameCount() uint64 {
+	return f.frameCount
 }
 
 // DrawFrame ships the rendered DOOM frame to the virtio-gpu scanout.
