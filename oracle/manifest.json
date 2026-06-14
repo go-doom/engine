@@ -4,7 +4,7 @@
   "wad_bytes": 28795076,
   "wad_hash": "7323bcc168c5a45ff10749b339960e98314740a734c30d4b9f3337001f9e703d",
   "script_hash": "0000000000000000000000000000000000000000000000000000000000000000",
-  "gore_version": "01bf67c2f1a6fae162f9b8ceadd38d25f8ba086a",
+  "gore_version": "9702daa866b48f3ec48a5c9b8c495e31cf634828",
   "checkpoints": [
     {
       "tic": 1,
@@ -43,16 +43,6 @@
       "prndindex": 0,
       "mrndindex": 0,
       "frame_count": 278,
-      "width": 320,
-      "height": 200
-    },
-    {
-      "tic": 350,
-      "frame_hash": "a7be3a40fb6d1e7518ae30ce71ae6c9d7cb4c646c0eaba48b8faba2c713e309b",
-      "frame_ppm": "frame_tic000350.ppm",
-      "prndindex": 35,
-      "mrndindex": 206,
-      "frame_count": 658,
       "width": 320,
       "height": 200
     },

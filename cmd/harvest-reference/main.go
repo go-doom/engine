@@ -379,7 +379,7 @@ func run(args []string, stderr io.Writer) error {
 	wadName := fs.String("wad-name", "doom1.wad", "name to advertise the WAD as via embedwad.New")
 	seed := fs.Uint("seed", 0, "PRNG seed (0..255)")
 	scriptPath := fs.String("script", "", "scripted input file (empty = no input)")
-	checkpointsCSV := fs.String("checkpoints", "35,70,140,350,1050",
+	checkpointsCSV := fs.String("checkpoints", "1,35,70,140,1050",
 		"comma-separated list of tics to snapshot")
 	outDir := fs.String("out", "oracle", "output directory for oracle artifacts")
 	goreVersion := fs.String("gore-version", "", "engine commit/tag to record in manifest")
