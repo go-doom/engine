@@ -37,13 +37,20 @@ func TestNewGPUAdapter_Flip_Centers(t *testing.T) {
 	if fb.flushed != 1 {
 		t.Fatalf("Flush count: got %d want 1", fb.flushed)
 	}
-	// Centered: xOff = (640-320)/2 = 160, yOff = (400-200)/2 = 100.
+	// R-doom1i: scale = min(640/320, 400/200) = 2 → DOOM 320×200 scales
+	// to 640×400 = fills the entire framebuffer (xOff=yOff=0, no border).
+	// The single top-left source pixel is replicated into the 2×2 dest
+	// pixel block (0,0)..(1,1).
 	dstStride := W * 4
-	off := (100)*dstStride + 160*4
-	got := [4]byte{pix[off+0], pix[off+1], pix[off+2], pix[off+3]}
 	want := [4]byte{0x33, 0x22, 0x11, 0x44} // BGRA
-	if got != want {
-		t.Fatalf("BGRA pixel: got %v want %v", got, want)
+	for dy := 0; dy < 2; dy++ {
+		for dx := 0; dx < 2; dx++ {
+			off := dy*dstStride + dx*4
+			got := [4]byte{pix[off+0], pix[off+1], pix[off+2], pix[off+3]}
+			if got != want {
+				t.Fatalf("BGRA pixel at (%d,%d): got %v want %v (scale=2 replication)", dx, dy, got, want)
+			}
+		}
 	}
 }
 

@@ -88,36 +88,73 @@ func (g *GPUAdapter) Flip(frame *image.RGBA) error {
 	if fw <= 0 || fh <= 0 || g.width <= 0 || g.height <= 0 {
 		return nil
 	}
-	// Recompute centering if dimensions changed; first frame is the
-	// canonical sizing.
-	if fw <= g.width {
-		g.xOff = (g.width - fw) / 2
+	// R-doom1i (2026-06-14): integer nearest-neighbor up-scale the DOOM
+	// canvas (typically 320×200) to fill as much of the framebuffer
+	// (typically a host scanout size like 1280×800) as possible while
+	// preserving aspect ratio. Previously we centered DOOM 1:1 in the
+	// framebuffer with a large black border; the operator's reaction
+	// "l'image ne fit pas la taille de la fenêtre QEMU" surfaced the
+	// gap. With a 4× scale on a 1280×800 scanout, DOOM 320×200 fills
+	// exactly the entire framebuffer (320×4=1280, 200×4=800).
+	//
+	// When the source frame is LARGER than the framebuffer (an edge
+	// case the original test corpus exercises), we fall back to the
+	// historical clip-and-center 1:1 behaviour: scale = 1, fw/fh
+	// clamped to g.width/g.height. Otherwise scale is the maximum
+	// integer factor that still fits both dimensions.
+	scale := 1
+	if fw <= g.width && fh <= g.height {
+		scale = g.width / fw
+		if sh := g.height / fh; sh < scale {
+			scale = sh
+		}
+		if scale < 1 {
+			scale = 1
+		}
 	} else {
-		g.xOff = 0
-		fw = g.width
+		// Source larger than framebuffer — clip to FB dimensions, no scale.
+		if fw > g.width {
+			fw = g.width
+		}
+		if fh > g.height {
+			fh = g.height
+		}
 	}
-	if fh <= g.height {
-		g.yOff = (g.height - fh) / 2
-	} else {
-		g.yOff = 0
-		fh = g.height
-	}
+	dw := fw * scale
+	dh := fh * scale
+	g.xOff = (g.width - dw) / 2
+	g.yOff = (g.height - dh) / 2
 	srcStride := frame.Stride
 	dstStride := g.width * 4
-	for y := 0; y < fh; y++ {
-		srcRow := frame.Pix[y*srcStride : y*srcStride+fw*4]
-		dstRow := g.pix[(y+g.yOff)*dstStride+g.xOff*4 : (y+g.yOff)*dstStride+(g.xOff+fw)*4]
-		for x := 0; x < fw; x++ {
-			r := srcRow[x*4+0]
-			gn := srcRow[x*4+1]
-			bl := srcRow[x*4+2]
-			a := srcRow[x*4+3]
-			// virtio-gpu's VIRTIO_GPU_FORMAT_B8G8R8A8_UNORM lays bytes
-			// out as { B, G, R, A } in little-endian memory order.
-			dstRow[x*4+0] = bl
-			dstRow[x*4+1] = gn
-			dstRow[x*4+2] = r
-			dstRow[x*4+3] = a
+	for sy := 0; sy < fh; sy++ {
+		srcRow := frame.Pix[sy*srcStride : sy*srcStride+fw*4]
+		// Build one scaled destination row in a buffer, then copy `scale`
+		// times into the framebuffer for the vertical replication.
+		baseY := (g.yOff + sy*scale) * dstStride
+		// First the inner pixel loop, writing scale-replicated horizontally.
+		for sx := 0; sx < fw; sx++ {
+			r := srcRow[sx*4+0]
+			gn := srcRow[sx*4+1]
+			bl := srcRow[sx*4+2]
+			a := srcRow[sx*4+3]
+			// virtio-gpu's VIRTIO_GPU_FORMAT_B8G8R8A8_UNORM = { B, G, R, A }.
+			startCol := g.xOff + sx*scale
+			for dx := 0; dx < scale; dx++ {
+				off := baseY + (startCol+dx)*4
+				g.pix[off+0] = bl
+				g.pix[off+1] = gn
+				g.pix[off+2] = r
+				g.pix[off+3] = a
+			}
+		}
+		// Vertical replication: copy the just-written row `scale-1` more
+		// times beneath it. The first row was written by the inner loop.
+		rowStart := baseY + g.xOff*4
+		rowEnd := rowStart + dw*4
+		src := g.pix[rowStart:rowEnd]
+		for dy := 1; dy < scale; dy++ {
+			dstStart := (g.yOff+sy*scale+dy)*dstStride + g.xOff*4
+			copy(g.pix[dstStart:dstStart+dw*4], src)
 		}
 	}
 	return g.fb.Flush()
