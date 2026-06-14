@@ -47,6 +47,7 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -63,6 +64,7 @@ import (
 	"sync"
 
 	godoom "github.com/cloud-boot/godoom"
+	"github.com/cloud-boot/godoom/backend/audiolog"
 	"github.com/cloud-boot/godoom/embedwad"
 )
 
@@ -114,6 +116,10 @@ type harvestFrontend struct {
 	outDir     string
 	results    []checkpoint
 	stopCalled bool
+
+	// R-doom1h: GATE C-1 audio event recorder. Nil disables recording so
+	// tests that don't need the audio log can newFrontend(nil, ..., ...).
+	audio      *audiolog.Recorder
 }
 
 func newFrontend(events []scriptEvent, checkTics []int32, outDir string) *harvestFrontend {
@@ -123,6 +129,7 @@ func newFrontend(events []scriptEvent, checkTics []int32, outDir string) *harves
 		events:    events,
 		checkTics: checkTics,
 		outDir:    outDir,
+		audio:     audiolog.New(godoom.CurrentTic),
 	}
 }
 
@@ -246,8 +253,17 @@ func (f *harvestFrontend) GetEvent(ev *godoom.DoomEvent) bool {
 	return true
 }
 
-func (f *harvestFrontend) CacheSound(_ string, _ []byte)             {}
-func (f *harvestFrontend) PlaySound(_ string, _, _, _ int)           {}
+func (f *harvestFrontend) CacheSound(name string, data []byte) {
+	if f.audio != nil {
+		f.audio.Cache(name, data)
+	}
+}
+
+func (f *harvestFrontend) PlaySound(name string, channel, vol, sep int) {
+	if f.audio != nil {
+		f.audio.Play(name, channel, vol, sep)
+	}
+}
 
 func parseScript(rd io.Reader) ([]scriptEvent, []byte, error) {
 	data, err := io.ReadAll(rd)
@@ -367,6 +383,11 @@ func run(args []string, stderr io.Writer) error {
 		"comma-separated list of tics to snapshot")
 	outDir := fs.String("out", "oracle", "output directory for oracle artifacts")
 	goreVersion := fs.String("gore-version", "", "engine commit/tag to record in manifest")
+	// R-doom1h: when -verify-audio-log is set, the run is a re-harvest in
+	// audit mode — write a fresh audio_log.json into -out as usual, then
+	// byte-compare it against the path provided. Exit non-zero on diff.
+	verifyAudioLog := fs.String("verify-audio-log", "",
+		"path to a committed audio_log.json; after harvest, byte-compare the fresh log against it and fail on diff")
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
@@ -441,7 +462,56 @@ func run(args []string, stderr io.Writer) error {
 	}
 	fmt.Fprintf(stderr, "harvest: wrote %d checkpoints + manifest -> %s\n",
 		len(fe.results), manPath)
+
+	audioPath := filepath.Join(*outDir, "audio_log.json")
+	if err := writeAudioLog(audioPath, fe.audio); err != nil {
+		return fmt.Errorf("write audio log: %w", err)
+	}
+	fmt.Fprintf(stderr, "harvest: wrote %d audio events -> %s\n",
+		len(fe.audio.Entries()), audioPath)
+
+	if *verifyAudioLog != "" {
+		if err := compareAudioLogs(*verifyAudioLog, audioPath, stderr); err != nil {
+			return err
+		}
+	}
 	return nil
+}
+
+// writeAudioLog serialises the recorder to audio_log.json. Extracted so
+// the unit tests can exercise the write+compare paths without spinning
+// up gore.Run.
+func writeAudioLog(path string, rec *audiolog.Recorder) error {
+	fh, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer fh.Close()
+	return rec.WriteJSON(fh)
+}
+
+// compareAudioLogs reads two audio_log.json files and reports any byte
+// difference. The committed log is the oracle; the fresh log is what
+// the current engine produced. Byte-equal is the GATE C-1 contract.
+func compareAudioLogs(oraclePath, freshPath string, stderr io.Writer) error {
+	a, err := os.ReadFile(oraclePath)
+	if err != nil {
+		return fmt.Errorf("read oracle audio log: %w", err)
+	}
+	b, err := os.ReadFile(freshPath)
+	if err != nil {
+		return fmt.Errorf("read fresh audio log: %w", err)
+	}
+	if bytes.Equal(a, b) {
+		ah := sha256.Sum256(a)
+		fmt.Fprintf(stderr, "harvest: GATE C-1 PASS audio_log.json sha256=%s\n",
+			hex.EncodeToString(ah[:])[:16])
+		return nil
+	}
+	ah := sha256.Sum256(a)
+	bh := sha256.Sum256(b)
+	return fmt.Errorf("GATE C-1 FAIL: audio_log.json byte mismatch — oracle=%s fresh=%s",
+		hex.EncodeToString(ah[:])[:16], hex.EncodeToString(bh[:])[:16])
 }
 
 func main() {

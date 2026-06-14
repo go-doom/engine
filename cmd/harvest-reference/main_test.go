@@ -13,6 +13,7 @@ import (
 	"testing"
 
 	godoom "github.com/cloud-boot/godoom"
+	"github.com/cloud-boot/godoom/backend/audiolog"
 )
 
 func TestParseKey_AllForms(t *testing.T) {
@@ -217,10 +218,97 @@ func TestHarvestFrontend_DrawSnapshotAndStop(t *testing.T) {
 	if !fe.stopCalled {
 		t.Fatalf("expected Stop() after last checkpoint")
 	}
-	// SetTitle / CacheSound / PlaySound are no-ops; just exercise them.
+	// SetTitle is still a no-op; CacheSound/PlaySound now feed the
+	// R-doom1h audio recorder.
 	fe.SetTitle("freedoom")
 	fe.CacheSound("dspistol", []byte{1})
 	fe.PlaySound("dspistol", 0, 100, 64)
+	if got := len(fe.audio.Entries()); got != 2 {
+		t.Fatalf("audio recorder should have 2 entries, got %d", got)
+	}
+}
+
+func TestHarvestFrontend_AudioNilSafety(t *testing.T) {
+	fe := &harvestFrontend{}
+	fe.CacheSound("d", []byte{1})
+	fe.PlaySound("d", 0, 100, 64)
+}
+
+func TestWriteAudioLog_RoundTrips(t *testing.T) {
+	dir := t.TempDir()
+	rec := audiolog.New(nil)
+	rec.Cache("dspistol", []byte{1, 2, 3})
+	rec.Play("dspistol", 1, 100, 64)
+	path := filepath.Join(dir, "audio_log.json")
+	if err := writeAudioLog(path, rec); err != nil {
+		t.Fatalf("writeAudioLog: %v", err)
+	}
+	if _, err := os.Stat(path); err != nil {
+		t.Fatalf("audio log not written: %v", err)
+	}
+}
+
+func TestWriteAudioLog_OpenFailure(t *testing.T) {
+	rec := audiolog.New(nil)
+	if err := writeAudioLog("/nonexistent-dir-xyz/audio_log.json", rec); err == nil {
+		t.Fatalf("expected open error on unwritable path")
+	}
+}
+
+func TestCompareAudioLogs_EqualPasses(t *testing.T) {
+	dir := t.TempDir()
+	a := filepath.Join(dir, "a.json")
+	b := filepath.Join(dir, "b.json")
+	if err := os.WriteFile(a, []byte("[]\n"), 0o644); err != nil {
+		t.Fatalf("seed a: %v", err)
+	}
+	if err := os.WriteFile(b, []byte("[]\n"), 0o644); err != nil {
+		t.Fatalf("seed b: %v", err)
+	}
+	var buf bytes.Buffer
+	if err := compareAudioLogs(a, b, &buf); err != nil {
+		t.Fatalf("equal logs should pass, got %v", err)
+	}
+	if !strings.Contains(buf.String(), "GATE C-1 PASS") {
+		t.Fatalf("expected PASS line, got %q", buf.String())
+	}
+}
+
+func TestCompareAudioLogs_DiffFails(t *testing.T) {
+	dir := t.TempDir()
+	a := filepath.Join(dir, "a.json")
+	b := filepath.Join(dir, "b.json")
+	if err := os.WriteFile(a, []byte("[]\n"), 0o644); err != nil {
+		t.Fatalf("seed a: %v", err)
+	}
+	if err := os.WriteFile(b, []byte("[{}]\n"), 0o644); err != nil {
+		t.Fatalf("seed b: %v", err)
+	}
+	if err := compareAudioLogs(a, b, new(bytes.Buffer)); err == nil {
+		t.Fatalf("differing logs should fail")
+	}
+}
+
+func TestCompareAudioLogs_MissingOracle(t *testing.T) {
+	dir := t.TempDir()
+	b := filepath.Join(dir, "b.json")
+	if err := os.WriteFile(b, []byte("[]"), 0o644); err != nil {
+		t.Fatalf("seed b: %v", err)
+	}
+	if err := compareAudioLogs("/no/such/oracle.json", b, new(bytes.Buffer)); err == nil {
+		t.Fatalf("missing oracle must error")
+	}
+}
+
+func TestCompareAudioLogs_MissingFresh(t *testing.T) {
+	dir := t.TempDir()
+	a := filepath.Join(dir, "a.json")
+	if err := os.WriteFile(a, []byte("[]"), 0o644); err != nil {
+		t.Fatalf("seed a: %v", err)
+	}
+	if err := compareAudioLogs(a, "/no/such/fresh.json", new(bytes.Buffer)); err == nil {
+		t.Fatalf("missing fresh must error")
+	}
 }
 
 func TestHarvestFrontend_GetEventDrains(t *testing.T) {

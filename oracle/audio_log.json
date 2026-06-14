@@ -1,0 +1,2074 @@
+[
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "barexp",
+    "sha256": "833a731d91a38c535dcfc59d0b813ef24fdf7b538f9b44bc1ed3f03ab500bebc"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bdcls",
+    "sha256": "7db20cc312150c12eddaefea6285014abfd3bbed84f8879630362d0b632036e2"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bdopn",
+    "sha256": "93c3bd3f7da0913345291fb1c7daca42230254013d60964a9fa54bc6023e6c42"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bfg",
+    "sha256": "1130dced24e847a2e14aec221ad4d1bd0b81da9c546bd36462326389029a5b38"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bgact",
+    "sha256": "61fe2c8dc37d8828ebd664402d8826406fc21f35f458338a561df595991cd274"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bgdth1",
+    "sha256": "8f3ad4ec5c1ddd82d63edb8a7ed8c3dcad15e5c597f50ab12517f9447664de76"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bgdth2",
+    "sha256": "30abe706e3f8731939abe602d7036fa5838ef2986a1eb6e3cb546d844b4be9d4"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bgsit1",
+    "sha256": "f7af8e6eeb6378430284d2e9a582cec4bde5244afdcb2c2687fd51461ea87234"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "bgsit2",
+    "sha256": "c24f0640311289e028fc5c8a3a1face50600bba4f399f0390a199b9695018e5d"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "brsdth",
+    "sha256": "058aa84b150f041b683196b79f76d42616f87b411ac1b088e9ef1e8da692e530"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "brssit",
+    "sha256": "5882877a96e836e1157940a6a5cdbdeb61c981c078c757c336bfac06454243ff"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "cacdth",
+    "sha256": "8409db4801a08ba5025422f70c7740eebe8569990b1c66a559481023e6205ecc"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "cacsit",
+    "sha256": "13723a32e423606d9a5755ea44243343fdf61190b40c526c0d4f1b8111453b8d"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "claw",
+    "sha256": "6ac8e0c2c1e7e2ca3156f8de7ada8a1ae036abac18b87e80517fba7ce3286a4a"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "cybdth",
+    "sha256": "cad7cb7ea750c215613923705e97ab4d34b72a6bb65c4060f8d28ef22d337984"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "cybsit",
+    "sha256": "610006b593ae00cbf8e291a2c75de8adf330c4d7e30422e025b892c82b2596fc"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "dmact",
+    "sha256": "846139710206fb520f8c8f4f9863270bf97af90369e139a57bcf8a091d64e353"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "dmpain",
+    "sha256": "8907e6b34499ab38223a132c88266352c642c04e27d247b3c8a3fe49270da1d0"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "dorcls",
+    "sha256": "b16b9c5734eb1195ab4dac0fdefc906822a80904adc5f2bf09fe8fc72ca66ba5"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "doropn",
+    "sha256": "3685bbe308904ac6f14ebdae847cd0e66a3bd805b3362c1fc03db15576efe0b7"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "firsht",
+    "sha256": "3095e724545aa65f86f9fc890ca6ec944f5279a39f0b7059e7ac3995e83019e0"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "firxpl",
+    "sha256": "5f896682c787651249e3624c773420fe2a28633a6e18cc208837448f1ca8b92b"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "getpow",
+    "sha256": "6816bdbe6f84c9baeacb66c0273f2112e34b815defa7689ec2abe33fd494282c"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "hoof",
+    "sha256": "9461219aa081169c42a15b026f5487354674e7899d7e2303721559c2d528783d"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "itemup",
+    "sha256": "11c28431a06b113a9795623957cc7c860e59ed446f21c56d261f8ea0a0b09aee"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "itmbk",
+    "sha256": "5a6fa412f2b9c68cfd64cbd82b731a959bf23cc4bcf53d4167c9871563d23fe5"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "metal",
+    "sha256": "2a39c232090afcdd779dfc9e34a85a7cf07eade7f0f3ea15106da33db089fbc4"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "noway",
+    "sha256": "ebdc236d2631897a7e71221552603f733e3268f7bedc8be5a9369ce4891e4997"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "oof",
+    "sha256": "6f52e5c7ae7ed85a1a9158be96f38a3d06e0a5e7a826c037519b8724bf99875d"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "pdiehi",
+    "sha256": "96cd96f60b0a54fd36a9f9f62f0b1429e3387636251156d3edf5be97792f7c7e"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "pistol",
+    "sha256": "0cbea6c250ca8273153389266fca3698f6268488a9423ec5ac38e81d4114b2af"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "plasma",
+    "sha256": "dda53eae2171d6af9faa033ded732bd0cb714fbf1109aadb2c2b1b5cfd7a58b2"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "pldeth",
+    "sha256": "59d26838c23c343d7be6a857bc41069596a766b491ef13845dd45ea4c274f354"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "plpain",
+    "sha256": "c5d987c24a88f7256f478ed572f03e7338f6ac124442ba2ab76e2459b4e30384"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "podth1",
+    "sha256": "184bd143f5e5261db896dc32eeff228c92f7288e5032cb27c04a06d06a20ae1b"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "podth2",
+    "sha256": "793724fb6dde998efe0698f8671e9ba072522c6958115e36c357bb156c54d9fa"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "podth3",
+    "sha256": "3911784e36824c78b0bdc0d07d776f38fdaa74379c6282915add9c422b6ff11f"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "popain",
+    "sha256": "ced291c1ae5951dde4a33d2e304276c7e82851739164fb2231d229f0371a255f"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "posact",
+    "sha256": "a02ad9faeda8ceb87d4a52013f476e0ea372353cf3b671ab82f1379715050e0a"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "posit1",
+    "sha256": "d1fa7a5f52fc082c4d654c3b6e7cc05eb5278f8f1f3269df6f4fc03d740118b0"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "posit2",
+    "sha256": "7e3057ec3d1ce65ab60a29398ae0d21738ea5937d0c29e00a44aadb7a3cce87d"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "posit3",
+    "sha256": "2d32ffede8847909d8caf83d23118a4fe2c9b67f1b6c2634726d1918fec214b5"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "pstart",
+    "sha256": "ef1259d05f513cf7e448a3d5b98f29dbff3cd494a6e56e89a37c1d45d3fb9553"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "pstop",
+    "sha256": "36369db520fa0cb7888c276c18f9f041dc3e36b6fd37d838a335ecc6410f5c9c"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "punch",
+    "sha256": "e8e85632b69067434163629a8c17230d507b5b5c7cd768143790cc42342323c4"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "rlaunc",
+    "sha256": "f715132ac95f19ea3ae5efe56883dc1215fe5763da0491d69b6d79c2fbdc767a"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "rxplod",
+    "sha256": "f2c3276cb7227ac9cd40d86ba5f3523eced66b847ea10013521bfbae70adbc04"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sawful",
+    "sha256": "9715b9a5ab8728445f55211a370c053af2d54d416bd798d63ae950b9a1135b98"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sawhit",
+    "sha256": "f974bcbb49b32f439b3ddc171d5efbfe4794e93cd29e46cf51267e926495fd7e"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sawidl",
+    "sha256": "1facf6f8024c3e285670ab59d46d77cc3ade7e9d76b183ccb53abe5799905ef1"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sawup",
+    "sha256": "323d7eb19a0aa3b6e66799cccc6ebd3f15a501e6f77288887578f9d54cb56e36"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sgcock",
+    "sha256": "d58da4eafb3ce3dba00b191454db4763795c950f9a681b85326e0f4ba6da0673"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sgtatk",
+    "sha256": "40d41c8e1e65c799e79ea799e1b63d42579238a4f27abd7d0937efc155742ac5"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sgtdth",
+    "sha256": "0de16fab4f483ff00fdb6c6cd8abbdcdcc3e9220ccdaa93db1eeb29c253fa657"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sgtsit",
+    "sha256": "036f72b0c440e18de081d6c3bb2d34427b0487886db73926bb1001d52bc23c30"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "shotgn",
+    "sha256": "cf90aefbea186cb0c5208b8e108ed1cf5cfea2b6fc59a3af1f76702b1d88b821"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "sklatk",
+    "sha256": "2814a898d85b3e0e674c5fd9553a10a1f11d529edf225bac1be7a818b877616f"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "skldth",
+    "sha256": "9bdb691eed6a246ada2b3ef56ac7ce65fa97137a03899d2a79c659acc3a492f2"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "slop",
+    "sha256": "1c184efa6d51561261720b267a1a4e7ad2f227314a2fe11e565edd0c44e36c6a"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "spidth",
+    "sha256": "7b9b62019c733087d00609488dda5cb3c882af9e5de1c5d8cca9145c4cf81ac9"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "spisit",
+    "sha256": "f9cd083550a36913dea0a70978b578859adb935db22fe2097bbfce1e6b5a3572"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "stnmov",
+    "sha256": "a31304ab33ad35d9f318c614eef034d0acc63d4be95e49579897766ca3e36876"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "swtchn",
+    "sha256": "4836df44486a3d53c35a1e336f6e81b491fcd18fa6a7a24a51df54d7fdf18904"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "swtchx",
+    "sha256": "80fc87b47376493664d8a1a013e2904ae7bd6df32042ce3aeba459a381c5fac2"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "telept",
+    "sha256": "87916c69431d910743e43c25a162c6e0b8e2f5ffcd741d11cbe05be28e6cd816"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "tink",
+    "sha256": "d75f3361194790791ec4e9f5991872d3f3c0308110ce14513eac9c8ede58d1e8"
+  },
+  {
+    "tic": 0,
+    "op": "cache",
+    "name": "wpnup",
+    "sha256": "8abd10663c37330f3fae3fc0b74b74dbd658aae25ef16f04b03c458a47f81bec"
+  },
+  {
+    "tic": 214,
+    "op": "play",
+    "name": "posit1",
+    "vol": 43,
+    "sep": 61
+  },
+  {
+    "tic": 215,
+    "op": "play",
+    "name": "bgsit1",
+    "vol": 25,
+    "sep": 123
+  },
+  {
+    "tic": 240,
+    "op": "play",
+    "name": "posit3",
+    "vol": 9,
+    "sep": 207
+  },
+  {
+    "tic": 243,
+    "op": "play",
+    "name": "posit3",
+    "vol": 6,
+    "sep": 201
+  },
+  {
+    "tic": 246,
+    "op": "play",
+    "name": "bgsit2",
+    "vol": 8,
+    "sep": 205
+  },
+  {
+    "tic": 247,
+    "op": "play",
+    "name": "bgsit2",
+    "vol": 17,
+    "sep": 205
+  },
+  {
+    "tic": 248,
+    "op": "play",
+    "name": "posit3",
+    "vol": 64,
+    "sep": 124
+  },
+  {
+    "tic": 249,
+    "op": "play",
+    "name": "posit2",
+    "vol": 36,
+    "sep": 119
+  },
+  {
+    "tic": 250,
+    "op": "play",
+    "name": "posit1",
+    "channel": 1,
+    "vol": 5,
+    "sep": 221
+  },
+  {
+    "tic": 250,
+    "op": "play",
+    "name": "posit2",
+    "vol": 8,
+    "sep": 69
+  },
+  {
+    "tic": 250,
+    "op": "play",
+    "name": "posit2",
+    "channel": 2,
+    "vol": 44,
+    "sep": 44
+  },
+  {
+    "tic": 251,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 251,
+    "op": "play",
+    "name": "posit1",
+    "channel": 1,
+    "vol": 43,
+    "sep": 128
+  },
+  {
+    "tic": 251,
+    "op": "play",
+    "name": "posit2",
+    "channel": 2,
+    "vol": 7,
+    "sep": 213
+  },
+  {
+    "tic": 251,
+    "op": "play",
+    "name": "sgtsit",
+    "channel": 3,
+    "vol": 38,
+    "sep": 222
+  },
+  {
+    "tic": 253,
+    "op": "play",
+    "name": "popain",
+    "vol": 64,
+    "sep": 126
+  },
+  {
+    "tic": 254,
+    "op": "play",
+    "name": "posit2",
+    "vol": 53,
+    "sep": 162
+  },
+  {
+    "tic": 254,
+    "op": "play",
+    "name": "posit2",
+    "channel": 2,
+    "vol": 38,
+    "sep": 64
+  },
+  {
+    "tic": 254,
+    "op": "play",
+    "name": "sgtsit",
+    "channel": 1,
+    "vol": 23,
+    "sep": 222
+  },
+  {
+    "tic": 255,
+    "op": "play",
+    "name": "bgact",
+    "vol": 9,
+    "sep": 204
+  },
+  {
+    "tic": 255,
+    "op": "play",
+    "name": "bgsit1",
+    "channel": 1,
+    "vol": 20,
+    "sep": 63
+  },
+  {
+    "tic": 256,
+    "op": "play",
+    "name": "bgsit2",
+    "vol": 23,
+    "sep": 59
+  },
+  {
+    "tic": 264,
+    "op": "play",
+    "name": "bgact",
+    "vol": 22,
+    "sep": 56
+  },
+  {
+    "tic": 265,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 266,
+    "op": "play",
+    "name": "podth2",
+    "vol": 64,
+    "sep": 129
+  },
+  {
+    "tic": 279,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 281,
+    "op": "play",
+    "name": "popain",
+    "vol": 54,
+    "sep": 134
+  },
+  {
+    "tic": 304,
+    "op": "play",
+    "name": "bgact",
+    "vol": 27,
+    "sep": 193
+  },
+  {
+    "tic": 305,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 307,
+    "op": "play",
+    "name": "podth1",
+    "vol": 57,
+    "sep": 126
+  },
+  {
+    "tic": 310,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 36,
+    "sep": 118
+  },
+  {
+    "tic": 319,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 328,
+    "op": "play",
+    "name": "posact",
+    "vol": 29,
+    "sep": 69
+  },
+  {
+    "tic": 336,
+    "op": "play",
+    "name": "bgact",
+    "vol": 13,
+    "sep": 208
+  },
+  {
+    "tic": 340,
+    "op": "play",
+    "name": "bgact",
+    "channel": 1,
+    "vol": 28,
+    "sep": 70
+  },
+  {
+    "tic": 340,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 351,
+    "op": "play",
+    "name": "bgact",
+    "channel": 1,
+    "vol": 22,
+    "sep": 72
+  },
+  {
+    "tic": 351,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 36,
+    "sep": 63
+  },
+  {
+    "tic": 359,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 361,
+    "op": "play",
+    "name": "popain",
+    "vol": 53,
+    "sep": 128
+  },
+  {
+    "tic": 362,
+    "op": "play",
+    "name": "posact",
+    "vol": 9,
+    "sep": 206
+  },
+  {
+    "tic": 376,
+    "op": "play",
+    "name": "posact",
+    "vol": 21,
+    "sep": 216
+  },
+  {
+    "tic": 378,
+    "op": "play",
+    "name": "firsht",
+    "channel": 1,
+    "vol": 50,
+    "sep": 148
+  },
+  {
+    "tic": 378,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 386,
+    "op": "play",
+    "name": "posact",
+    "vol": 22,
+    "sep": 217
+  },
+  {
+    "tic": 388,
+    "op": "play",
+    "name": "bgact",
+    "vol": 34,
+    "sep": 203
+  },
+  {
+    "tic": 397,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 398,
+    "op": "play",
+    "name": "posact",
+    "vol": 49,
+    "sep": 45
+  },
+  {
+    "tic": 399,
+    "op": "play",
+    "name": "bgact",
+    "vol": 42,
+    "sep": 141
+  },
+  {
+    "tic": 401,
+    "op": "play",
+    "name": "podth3",
+    "vol": 35,
+    "sep": 128
+  },
+  {
+    "tic": 424,
+    "op": "play",
+    "name": "posact",
+    "vol": 17,
+    "sep": 40
+  },
+  {
+    "tic": 424,
+    "op": "play",
+    "name": "posact",
+    "channel": 1,
+    "vol": 13,
+    "sep": 120
+  },
+  {
+    "tic": 428,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 35
+  },
+  {
+    "tic": 430,
+    "op": "play",
+    "name": "bgact",
+    "vol": 18,
+    "sep": 223
+  },
+  {
+    "tic": 432,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 442,
+    "op": "play",
+    "name": "posact",
+    "vol": 49,
+    "sep": 103
+  },
+  {
+    "tic": 447,
+    "op": "play",
+    "name": "dmact",
+    "vol": 56,
+    "sep": 224
+  },
+  {
+    "tic": 449,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 462,
+    "op": "play",
+    "name": "itemup",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 466,
+    "op": "play",
+    "name": "firsht",
+    "vol": 63,
+    "sep": 192
+  },
+  {
+    "tic": 469,
+    "op": "play",
+    "name": "itemup",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 469,
+    "op": "play",
+    "name": "itemup",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 475,
+    "op": "play",
+    "name": "dmact",
+    "vol": 64,
+    "sep": 60
+  },
+  {
+    "tic": 488,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 224
+  },
+  {
+    "tic": 492,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 494,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 50,
+    "sep": 109
+  },
+  {
+    "tic": 497,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 503,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 503,
+    "op": "play",
+    "name": "posact",
+    "channel": 1,
+    "vol": 17,
+    "sep": 220
+  },
+  {
+    "tic": 509,
+    "op": "play",
+    "name": "posact",
+    "vol": 41,
+    "sep": 59
+  },
+  {
+    "tic": 515,
+    "op": "play",
+    "name": "posact",
+    "vol": 34,
+    "sep": 88
+  },
+  {
+    "tic": 517,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 519,
+    "op": "play",
+    "name": "popain",
+    "vol": 42,
+    "sep": 125
+  },
+  {
+    "tic": 524,
+    "op": "play",
+    "name": "firsht",
+    "vol": 64,
+    "sep": 144
+  },
+  {
+    "tic": 524,
+    "op": "play",
+    "name": "posact",
+    "channel": 1,
+    "vol": 19,
+    "sep": 217
+  },
+  {
+    "tic": 531,
+    "op": "play",
+    "name": "bgact",
+    "vol": 39,
+    "sep": 52
+  },
+  {
+    "tic": 537,
+    "op": "play",
+    "name": "bgact",
+    "vol": 12,
+    "sep": 219
+  },
+  {
+    "tic": 538,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 543,
+    "op": "play",
+    "name": "posact",
+    "vol": 42,
+    "sep": 129
+  },
+  {
+    "tic": 557,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 558,
+    "op": "play",
+    "name": "podth2",
+    "vol": 45,
+    "sep": 130
+  },
+  {
+    "tic": 561,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 59,
+    "sep": 140
+  },
+  {
+    "tic": 574,
+    "op": "play",
+    "name": "bgact",
+    "vol": 45,
+    "sep": 42
+  },
+  {
+    "tic": 576,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 578,
+    "op": "play",
+    "name": "pistol",
+    "vol": 15,
+    "sep": 216
+  },
+  {
+    "tic": 585,
+    "op": "play",
+    "name": "claw",
+    "vol": 64,
+    "sep": 206
+  },
+  {
+    "tic": 588,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 596,
+    "op": "play",
+    "name": "posact",
+    "vol": 41,
+    "sep": 62
+  },
+  {
+    "tic": 598,
+    "op": "play",
+    "name": "bgact",
+    "vol": 12,
+    "sep": 209
+  },
+  {
+    "tic": 607,
+    "op": "play",
+    "name": "claw",
+    "vol": 64,
+    "sep": 94
+  },
+  {
+    "tic": 607,
+    "op": "play",
+    "name": "dmact",
+    "channel": 1,
+    "vol": 61,
+    "sep": 33
+  },
+  {
+    "tic": 610,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 616,
+    "op": "play",
+    "name": "bgact",
+    "vol": 15,
+    "sep": 196
+  },
+  {
+    "tic": 620,
+    "op": "play",
+    "name": "posact",
+    "vol": 35,
+    "sep": 123
+  },
+  {
+    "tic": 629,
+    "op": "play",
+    "name": "firsht",
+    "vol": 64,
+    "sep": 224
+  },
+  {
+    "tic": 645,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 152
+  },
+  {
+    "tic": 647,
+    "op": "play",
+    "name": "posit3",
+    "vol": 42,
+    "sep": 44
+  },
+  {
+    "tic": 648,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 15,
+    "sep": 213
+  },
+  {
+    "tic": 656,
+    "op": "play",
+    "name": "posit1",
+    "vol": 21,
+    "sep": 94
+  },
+  {
+    "tic": 658,
+    "op": "play",
+    "name": "posit2",
+    "vol": 27,
+    "sep": 79
+  },
+  {
+    "tic": 661,
+    "op": "play",
+    "name": "firsht",
+    "vol": 50,
+    "sep": 57
+  },
+  {
+    "tic": 663,
+    "op": "play",
+    "name": "dmact",
+    "vol": 25,
+    "sep": 223
+  },
+  {
+    "tic": 673,
+    "op": "play",
+    "name": "bgact",
+    "vol": 49,
+    "sep": 100
+  },
+  {
+    "tic": 674,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 45,
+    "sep": 128
+  },
+  {
+    "tic": 682,
+    "op": "play",
+    "name": "bgact",
+    "channel": 1,
+    "vol": 17,
+    "sep": 69
+  },
+  {
+    "tic": 682,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 684,
+    "op": "play",
+    "name": "pistol",
+    "vol": 22,
+    "sep": 172
+  },
+  {
+    "tic": 686,
+    "op": "play",
+    "name": "firsht",
+    "vol": 50,
+    "sep": 78
+  },
+  {
+    "tic": 689,
+    "op": "play",
+    "name": "posact",
+    "vol": 25,
+    "sep": 97
+  },
+  {
+    "tic": 691,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 33
+  },
+  {
+    "tic": 692,
+    "op": "play",
+    "name": "posact",
+    "vol": 20,
+    "sep": 221
+  },
+  {
+    "tic": 696,
+    "op": "play",
+    "name": "itemup",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 699,
+    "op": "play",
+    "name": "dmact",
+    "vol": 48,
+    "sep": 223
+  },
+  {
+    "tic": 699,
+    "op": "play",
+    "name": "shotgn",
+    "channel": 1,
+    "vol": 38,
+    "sep": 33
+  },
+  {
+    "tic": 701,
+    "op": "play",
+    "name": "popain",
+    "vol": 44,
+    "sep": 34
+  },
+  {
+    "tic": 702,
+    "op": "play",
+    "name": "pistol",
+    "vol": 47,
+    "sep": 96
+  },
+  {
+    "tic": 702,
+    "op": "play",
+    "name": "shotgn",
+    "channel": 1,
+    "vol": 41,
+    "sep": 43
+  },
+  {
+    "tic": 707,
+    "op": "play",
+    "name": "posact",
+    "vol": 6,
+    "sep": 130
+  },
+  {
+    "tic": 708,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 23,
+    "sep": 223
+  },
+  {
+    "tic": 710,
+    "op": "play",
+    "name": "popain",
+    "channel": 1,
+    "vol": 64,
+    "sep": 223
+  },
+  {
+    "tic": 710,
+    "op": "play",
+    "name": "popain",
+    "channel": 2,
+    "vol": 64,
+    "sep": 204
+  },
+  {
+    "tic": 710,
+    "op": "play",
+    "name": "posact",
+    "vol": 33,
+    "sep": 60
+  },
+  {
+    "tic": 711,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 50,
+    "sep": 78
+  },
+  {
+    "tic": 718,
+    "op": "play",
+    "name": "posact",
+    "vol": 26,
+    "sep": 41
+  },
+  {
+    "tic": 723,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 64,
+    "sep": 223
+  },
+  {
+    "tic": 723,
+    "op": "play",
+    "name": "shotgn",
+    "channel": 1,
+    "vol": 64,
+    "sep": 189
+  },
+  {
+    "tic": 725,
+    "op": "play",
+    "name": "dmpain",
+    "vol": 57,
+    "sep": 224
+  },
+  {
+    "tic": 726,
+    "op": "play",
+    "name": "popain",
+    "vol": 31,
+    "sep": 224
+  },
+  {
+    "tic": 726,
+    "op": "play",
+    "name": "popain",
+    "channel": 1,
+    "vol": 28,
+    "sep": 224
+  },
+  {
+    "tic": 727,
+    "op": "play",
+    "name": "dmact",
+    "vol": 58,
+    "sep": 224
+  },
+  {
+    "tic": 728,
+    "op": "play",
+    "name": "firsht",
+    "vol": 34,
+    "sep": 59
+  },
+  {
+    "tic": 731,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 731,
+    "op": "play",
+    "name": "posact",
+    "channel": 1,
+    "vol": 4,
+    "sep": 151
+  },
+  {
+    "tic": 735,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 30,
+    "sep": 53
+  },
+  {
+    "tic": 738,
+    "op": "play",
+    "name": "popain",
+    "vol": 29,
+    "sep": 40
+  },
+  {
+    "tic": 741,
+    "op": "play",
+    "name": "firsht",
+    "vol": 62,
+    "sep": 33
+  },
+  {
+    "tic": 742,
+    "op": "play",
+    "name": "posact",
+    "vol": 19,
+    "sep": 222
+  },
+  {
+    "tic": 743,
+    "op": "play",
+    "name": "dmact",
+    "vol": 64,
+    "sep": 201
+  },
+  {
+    "tic": 743,
+    "op": "play",
+    "name": "sgtatk",
+    "channel": 1,
+    "vol": 62,
+    "sep": 170
+  },
+  {
+    "tic": 749,
+    "op": "play",
+    "name": "posact",
+    "vol": 32,
+    "sep": 202
+  },
+  {
+    "tic": 753,
+    "op": "play",
+    "name": "bgact",
+    "vol": 25,
+    "sep": 221
+  },
+  {
+    "tic": 763,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 124
+  },
+  {
+    "tic": 767,
+    "op": "play",
+    "name": "pistol",
+    "vol": 36,
+    "sep": 224
+  },
+  {
+    "tic": 779,
+    "op": "play",
+    "name": "wpnup",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 780,
+    "op": "play",
+    "name": "bgact",
+    "vol": 29,
+    "sep": 152
+  },
+  {
+    "tic": 780,
+    "op": "play",
+    "name": "claw",
+    "channel": 1,
+    "vol": 38,
+    "sep": 85
+  },
+  {
+    "tic": 782,
+    "op": "play",
+    "name": "popain",
+    "vol": 39,
+    "sep": 78
+  },
+  {
+    "tic": 785,
+    "op": "play",
+    "name": "sgtatk",
+    "vol": 54,
+    "sep": 119
+  },
+  {
+    "tic": 789,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 55,
+    "sep": 144
+  },
+  {
+    "tic": 796,
+    "op": "play",
+    "name": "pistol",
+    "vol": 63,
+    "sep": 224
+  },
+  {
+    "tic": 802,
+    "op": "play",
+    "name": "firsht",
+    "vol": 52,
+    "sep": 73
+  },
+  {
+    "tic": 803,
+    "op": "play",
+    "name": "podth1",
+    "channel": 1,
+    "vol": 50,
+    "sep": 182
+  },
+  {
+    "tic": 803,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 22,
+    "sep": 216
+  },
+  {
+    "tic": 804,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 52,
+    "sep": 57
+  },
+  {
+    "tic": 806,
+    "op": "play",
+    "name": "podth1",
+    "vol": 53,
+    "sep": 48
+  },
+  {
+    "tic": 807,
+    "op": "play",
+    "name": "pistol",
+    "vol": 16,
+    "sep": 198
+  },
+  {
+    "tic": 813,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 57,
+    "sep": 90
+  },
+  {
+    "tic": 830,
+    "op": "play",
+    "name": "posact",
+    "vol": 2,
+    "sep": 195
+  },
+  {
+    "tic": 834,
+    "op": "play",
+    "name": "bgact",
+    "vol": 12,
+    "sep": 203
+  },
+  {
+    "tic": 835,
+    "op": "play",
+    "name": "bgact",
+    "vol": 15,
+    "sep": 218
+  },
+  {
+    "tic": 840,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 848,
+    "op": "play",
+    "name": "firsht",
+    "vol": 49,
+    "sep": 45
+  },
+  {
+    "tic": 851,
+    "op": "play",
+    "name": "posact",
+    "vol": 14,
+    "sep": 55
+  },
+  {
+    "tic": 853,
+    "op": "play",
+    "name": "firsht",
+    "vol": 64,
+    "sep": 121
+  },
+  {
+    "tic": 858,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 114
+  },
+  {
+    "tic": 861,
+    "op": "play",
+    "name": "pistol",
+    "vol": 24,
+    "sep": 224
+  },
+  {
+    "tic": 861,
+    "op": "play",
+    "name": "plpain",
+    "channel": 1,
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 863,
+    "op": "play",
+    "name": "popain",
+    "vol": 45,
+    "sep": 224
+  },
+  {
+    "tic": 864,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 19,
+    "sep": 224
+  },
+  {
+    "tic": 867,
+    "op": "play",
+    "name": "dmact",
+    "vol": 40,
+    "sep": 202
+  },
+  {
+    "tic": 873,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 224
+  },
+  {
+    "tic": 874,
+    "op": "play",
+    "name": "bgact",
+    "vol": 16,
+    "sep": 169
+  },
+  {
+    "tic": 875,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 79
+  },
+  {
+    "tic": 877,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 879,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 41,
+    "sep": 224
+  },
+  {
+    "tic": 880,
+    "op": "play",
+    "name": "bgact",
+    "vol": 1,
+    "sep": 197
+  },
+  {
+    "tic": 884,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 50,
+    "sep": 42
+  },
+  {
+    "tic": 898,
+    "op": "play",
+    "name": "posact",
+    "vol": 23,
+    "sep": 135
+  },
+  {
+    "tic": 902,
+    "op": "play",
+    "name": "firsht",
+    "vol": 64,
+    "sep": 204
+  },
+  {
+    "tic": 903,
+    "op": "play",
+    "name": "dmact",
+    "vol": 34,
+    "sep": 215
+  },
+  {
+    "tic": 912,
+    "op": "play",
+    "name": "pistol",
+    "vol": 64,
+    "sep": 207
+  },
+  {
+    "tic": 913,
+    "op": "play",
+    "name": "posact",
+    "vol": 30,
+    "sep": 121
+  },
+  {
+    "tic": 914,
+    "op": "play",
+    "name": "firxpl",
+    "channel": 1,
+    "vol": 64,
+    "sep": 188
+  },
+  {
+    "tic": 914,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 915,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 54,
+    "sep": 33
+  },
+  {
+    "tic": 918,
+    "op": "play",
+    "name": "plpain",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 919,
+    "op": "play",
+    "name": "pistol",
+    "vol": 21,
+    "sep": 223
+  },
+  {
+    "tic": 921,
+    "op": "play",
+    "name": "popain",
+    "vol": 40,
+    "sep": 224
+  },
+  {
+    "tic": 924,
+    "op": "play",
+    "name": "bgact",
+    "vol": 13,
+    "sep": 224
+  },
+  {
+    "tic": 934,
+    "op": "play",
+    "name": "bgact",
+    "vol": 51,
+    "sep": 58
+  },
+  {
+    "tic": 936,
+    "op": "play",
+    "name": "posact",
+    "vol": 64,
+    "sep": 211
+  },
+  {
+    "tic": 944,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 52,
+    "sep": 64
+  },
+  {
+    "tic": 946,
+    "op": "play",
+    "name": "posact",
+    "vol": 36,
+    "sep": 74
+  },
+  {
+    "tic": 948,
+    "op": "play",
+    "name": "firsht",
+    "vol": 47,
+    "sep": 72
+  },
+  {
+    "tic": 950,
+    "op": "play",
+    "name": "firxpl",
+    "channel": 1,
+    "vol": 49,
+    "sep": 77
+  },
+  {
+    "tic": 950,
+    "op": "play",
+    "name": "pistol",
+    "vol": 59,
+    "sep": 190
+  },
+  {
+    "tic": 952,
+    "op": "play",
+    "name": "popain",
+    "vol": 62,
+    "sep": 183
+  },
+  {
+    "tic": 967,
+    "op": "play",
+    "name": "bgact",
+    "vol": 1,
+    "sep": 58
+  },
+  {
+    "tic": 971,
+    "op": "play",
+    "name": "firsht",
+    "vol": 4,
+    "sep": 204
+  },
+  {
+    "tic": 972,
+    "op": "play",
+    "name": "pistol",
+    "vol": 1,
+    "sep": 105
+  },
+  {
+    "tic": 975,
+    "op": "play",
+    "name": "bgact",
+    "vol": 49,
+    "sep": 100
+  },
+  {
+    "tic": 977,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 50,
+    "sep": 95
+  },
+  {
+    "tic": 978,
+    "op": "play",
+    "name": "popain",
+    "vol": 48,
+    "sep": 94
+  },
+  {
+    "tic": 980,
+    "op": "play",
+    "name": "posact",
+    "vol": 23,
+    "sep": 202
+  },
+  {
+    "tic": 985,
+    "op": "play",
+    "name": "claw",
+    "vol": 63,
+    "sep": 35
+  },
+  {
+    "tic": 985,
+    "op": "play",
+    "name": "dmact",
+    "channel": 1,
+    "vol": 54,
+    "sep": 220
+  },
+  {
+    "tic": 987,
+    "op": "play",
+    "name": "popain",
+    "vol": 64,
+    "sep": 38
+  },
+  {
+    "tic": 989,
+    "op": "play",
+    "name": "posact",
+    "vol": 21,
+    "sep": 66
+  },
+  {
+    "tic": 990,
+    "op": "play",
+    "name": "bgact",
+    "vol": 27,
+    "sep": 208
+  },
+  {
+    "tic": 996,
+    "op": "play",
+    "name": "firsht",
+    "vol": 34,
+    "sep": 35
+  },
+  {
+    "tic": 999,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 38,
+    "sep": 35
+  },
+  {
+    "tic": 1003,
+    "op": "play",
+    "name": "dmact",
+    "vol": 59,
+    "sep": 180
+  },
+  {
+    "tic": 1003,
+    "op": "play",
+    "name": "podth1",
+    "channel": 1,
+    "vol": 42,
+    "sep": 35
+  },
+  {
+    "tic": 1007,
+    "op": "play",
+    "name": "firsht",
+    "vol": 64,
+    "sep": 45
+  },
+  {
+    "tic": 1011,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 64,
+    "sep": 38
+  },
+  {
+    "tic": 1012,
+    "op": "play",
+    "name": "bgsit2",
+    "vol": 43,
+    "sep": 33
+  },
+  {
+    "tic": 1013,
+    "op": "play",
+    "name": "dmact",
+    "vol": 54,
+    "sep": 218
+  },
+  {
+    "tic": 1013,
+    "op": "play",
+    "name": "firsht",
+    "channel": 1,
+    "vol": 44,
+    "sep": 33
+  },
+  {
+    "tic": 1014,
+    "op": "play",
+    "name": "itemup",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 1015,
+    "op": "play",
+    "name": "bgact",
+    "vol": 44,
+    "sep": 38
+  },
+  {
+    "tic": 1016,
+    "op": "play",
+    "name": "podth2",
+    "vol": 64,
+    "sep": 44
+  },
+  {
+    "tic": 1018,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 48,
+    "sep": 33
+  },
+  {
+    "tic": 1021,
+    "op": "play",
+    "name": "popain",
+    "vol": 49,
+    "sep": 33
+  },
+  {
+    "tic": 1023,
+    "op": "play",
+    "name": "posact",
+    "vol": 17,
+    "sep": 213
+  },
+  {
+    "tic": 1027,
+    "op": "play",
+    "name": "bgact",
+    "vol": 14,
+    "sep": 131
+  },
+  {
+    "tic": 1028,
+    "op": "play",
+    "name": "firxpl",
+    "vol": 43,
+    "sep": 214
+  },
+  {
+    "tic": 1029,
+    "op": "play",
+    "name": "posact",
+    "vol": 29,
+    "sep": 213
+  },
+  {
+    "tic": 1031,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 64,
+    "sep": 128
+  },
+  {
+    "tic": 1033,
+    "op": "play",
+    "name": "bgact",
+    "vol": 10,
+    "sep": 134
+  },
+  {
+    "tic": 1037,
+    "op": "play",
+    "name": "bgact",
+    "vol": 51,
+    "sep": 38
+  },
+  {
+    "tic": 1041,
+    "op": "play",
+    "name": "claw",
+    "vol": 64,
+    "sep": 34
+  },
+  {
+    "tic": 1043,
+    "op": "play",
+    "name": "shotgn",
+    "vol": 53,
+    "sep": 34
+  },
+  {
+    "tic": 1044,
+    "op": "play",
+    "name": "popain",
+    "vol": 51,
+    "sep": 35
+  },
+  {
+    "tic": 1046,
+    "op": "play",
+    "name": "firsht",
+    "vol": 43,
+    "sep": 38
+  }
+]
