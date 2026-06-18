@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v6
       with:
         go-version: 1.25.3
     - name: Install dependencies
@@ -54,7 +54,7 @@ jobs:
         go build -o ebitengine ./example/ebitengine
         go build -o termdoom ./example/termdoom
     - name: Save the test movie outputs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: Test Run Movies
         path: doom_test_Test*.mp4
