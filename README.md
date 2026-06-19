@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/cloud-boot/brand/main/social/cloud-boot.png" alt="cloud-boot/godoom" width="720"></p>
+
 # cloud-boot/godoom
 
 A pure-Go DOOM engine adapted for cloud-boot's bare-metal TamaGo + UEFI demo
