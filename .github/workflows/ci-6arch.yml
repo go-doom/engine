@@ -1,0 +1,146 @@
+# go-doom/engine 6-arch CI -- vet + tests on the pure-Go engine path on
+# every 64-bit arch (amd64 / arm64 / riscv64 / loong64 / ppc64le / s390x).
+# Pairs with go.yml (host-side cgo demos under example/ + ebitengine, amd64-
+# only). Per the org conformance standard, the engine + TamaGo backend
+# layer validates on the same six targets the go-quake1 family does.
+#
+# Scope:
+#   - root package (doom.go, seed.go, ...)
+#   - backend/audiolog
+#   - backend/tamago
+#   - cmd/harvest-reference
+#   - embedwad
+#
+# Excludes example/* + cgo-bound demos -- those build only on amd64 with
+# SDL/GL/ebitengine and are covered by the existing go.yml.
+
+name: ci-6arch
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  GOWORK: off
+  CGO_ENABLED: 0
+
+jobs:
+  test:
+    name: vet + test (amd64, CGO=0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          check-latest: true
+
+      - run: go version
+
+      - name: list pure-Go packages
+        id: pkgs
+        run: |
+          pkgs=$(go list ./... | grep -vE '/(example|reference)/' | tr '\n' ' ')
+          echo "PURE_GO_PKGS=$pkgs" >> $GITHUB_ENV
+
+      - name: go vet
+        run: go vet $PURE_GO_PKGS
+
+      - name: go test
+        run: go test $PURE_GO_PKGS
+
+  test-arm64:
+    name: test (arm64, native CGO=0)
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          check-latest: true
+
+      - run: go version
+
+      - name: list pure-Go packages
+        run: |
+          pkgs=$(go list ./... | grep -vE '/(example|reference)/' | tr '\n' ' ')
+          echo "PURE_GO_PKGS=$pkgs" >> $GITHUB_ENV
+
+      - name: go test
+        run: go test $PURE_GO_PKGS
+
+  emulated:
+    name: test (${{ matrix.arch }}, qemu CGO=0)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: riscv64
+            image: debian:trixie
+            qemu_cpu: rv64,v=true,vlen=128
+          - arch: loong64
+            image: ghcr.io/loong64/debian:trixie
+            qemu_cpu: la464
+          - arch: ppc64le
+            image: debian:trixie
+            qemu_cpu: power9
+          - arch: s390x
+            image: debian:trixie
+            qemu_cpu: qemu
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          check-latest: true
+
+      - run: go version
+
+      - name: register QEMU binfmt handlers
+        run: docker run --privileged --rm tonistiigi/binfmt --install all
+
+      - name: cross-compile test binaries
+        env:
+          GOOS: linux
+          GOARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          mkdir -p _qemu
+          pkgs=$(go list ./... | grep -vE '/(example|reference)/')
+          for pkg in $pkgs; do
+            name=$(echo "$pkg" | tr '/.' '__')
+            if go test -c -o "_qemu/${name}.test" "$pkg"; then
+              echo "built ${name}.test for $pkg"
+            else
+              echo "no test binary for $pkg (no tests?)"
+            fi
+          done
+
+      - name: run test binaries under QEMU (${{ matrix.arch }})
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          bins=(_qemu/*.test)
+          if [ ${#bins[@]} -eq 0 ]; then
+            echo "::error::no test binaries were built for ${{ matrix.arch }}"
+            exit 1
+          fi
+          for bin in "${bins[@]}"; do
+            echo "::group::$bin (${{ matrix.arch }})"
+            docker run --rm \
+              --platform "linux/${{ matrix.arch }}" \
+              -e QEMU_CPU='${{ matrix.qemu_cpu }}' \
+              -v "$PWD:/work" -w /work \
+              ${{ matrix.image }} \
+              "/work/$bin" -test.v
+            echo "::endgroup::"
+          done
