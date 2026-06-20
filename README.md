@@ -1,9 +1,15 @@
-<p align="center"><img src="https://raw.githubusercontent.com/cloud-boot/brand/main/social/cloud-boot.png" alt="go-doom/engine" width="720"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/go-doom/brand/main/social/go-doom.png" alt="go-doom/engine" width="720"></p>
 
-# go-doom/engine
+# go-doom / engine
 
-A pure-Go DOOM engine adapted for cloud-boot's bare-metal TamaGo + UEFI demo
-target.
+[![6-arch CI](https://img.shields.io/badge/CI-amd64%20%C2%B7%20arm64%20%C2%B7%20riscv64%20%C2%B7%20loong64%20%C2%B7%20ppc64le%20%C2%B7%20s390x-success)](https://github.com/go-doom/engine/actions)
+[![CGO](https://img.shields.io/badge/CGO__ENABLED-0-blue)](#)
+[![License](https://img.shields.io/badge/license-BSD--3%20%2F%20GPL--2.0%20engine-informational)](LICENSE)
+
+Pure-Go [DOOM](https://en.wikipedia.org/wiki/Doom_(1993_video_game)) (id Tech 1, 1993)
+engine for bare-metal TamaGo + UEFI under the [cloud-boot](https://github.com/cloud-boot)
+loader. Sibling of the [`go-quake1`](https://github.com/go-quake1) family
+(`go-quake1` / `go-quake2` / `go-quake3` — the id Tech 1/2/3 ports).
 
 ## Fork origin
 
