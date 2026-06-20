@@ -1,4 +1,4 @@
-module github.com/cloud-boot/godoom
+module github.com/go-doom/engine
 
 go 1.26.0
 

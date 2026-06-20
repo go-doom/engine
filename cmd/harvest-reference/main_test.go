@@ -12,8 +12,8 @@ import (
 	"strings"
 	"testing"
 
-	godoom "github.com/cloud-boot/godoom"
-	"github.com/cloud-boot/godoom/backend/audiolog"
+	godoom "github.com/go-doom/engine"
+	"github.com/go-doom/engine/backend/audiolog"
 )
 
 func TestParseKey_AllForms(t *testing.T) {

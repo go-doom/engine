@@ -63,9 +63,9 @@ import (
 	"strings"
 	"sync"
 
-	godoom "github.com/cloud-boot/godoom"
-	"github.com/cloud-boot/godoom/backend/audiolog"
-	"github.com/cloud-boot/godoom/embedwad"
+	godoom "github.com/go-doom/engine"
+	"github.com/go-doom/engine/backend/audiolog"
+	"github.com/go-doom/engine/embedwad"
 )
 
 type checkpoint struct {

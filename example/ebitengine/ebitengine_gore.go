@@ -6,7 +6,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/cloud-boot/godoom"
+	"github.com/go-doom/engine"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"

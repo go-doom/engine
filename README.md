@@ -1,6 +1,6 @@
-<p align="center"><img src="https://raw.githubusercontent.com/cloud-boot/brand/main/social/cloud-boot.png" alt="cloud-boot/godoom" width="720"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/cloud-boot/brand/main/social/cloud-boot.png" alt="go-doom/engine" width="720"></p>
 
-# cloud-boot/godoom
+# go-doom/engine
 
 A pure-Go DOOM engine adapted for cloud-boot's bare-metal TamaGo + UEFI demo
 target.
@@ -122,7 +122,7 @@ Short version:
 ```bash
 # Re-harvest the host oracle (byte-equal reproducible — proves
 # engine + WAD + determinism hooks are intact):
-cd cloud-boot/godoom
+cd go-doom/engine
 GOWORK=off go run ./cmd/harvest-reference \
     -wad embedwad/doom1.wad \
     -seed 0 \

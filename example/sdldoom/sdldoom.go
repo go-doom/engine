@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/cloud-boot/godoom"
+	"github.com/go-doom/engine"
 	"github.com/veandco/go-sdl2/sdl"
 )
 

@@ -14,7 +14,7 @@ import (
 
 	"embed"
 
-	"github.com/cloud-boot/godoom"
+	"github.com/go-doom/engine"
 )
 
 //go:embed static/*

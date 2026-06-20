@@ -1,6 +1,6 @@
 # PORT.md -- godoom adaptation plan for cloud-boot TamaGo + UEFI
 
-This document is the engineering contract between `cloud-boot/godoom` and the
+This document is the engineering contract between `go-doom/engine` and the
 sibling sprints producing `go-virtio/gpu`, `go-virtio/sound`,
 `go-virtio/input`, and the `cloud-boot/tamago-uefi` "livedoom" boot artifact.
 It is the source of truth for *what* godoom needs to do and *what shape* its

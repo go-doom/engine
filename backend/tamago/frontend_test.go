@@ -7,7 +7,7 @@ import (
 	"image"
 	"testing"
 
-	godoom "github.com/cloud-boot/godoom"
+	godoom "github.com/go-doom/engine"
 )
 
 type fakeGPU struct{ frames int }

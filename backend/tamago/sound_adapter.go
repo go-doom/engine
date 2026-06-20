@@ -1,7 +1,7 @@
 // Copyright (c) 2026 cloud-boot contributors
 // SPDX-License-Identifier: GPL-2.0-only
 //
-// This file is part of cloud-boot/godoom, a fork of github.com/AndreRenaud/gore
+// This file is part of go-doom/engine, a fork of github.com/AndreRenaud/gore
 // (Pure-Go minimal Doom implementation, GPL-2.0). The TamaGo frontend adapter
 // itself is NEW code authored for cloud-boot and is released under the same
 // license to preserve the engine's GPL boundary; cloud-boot's other components
