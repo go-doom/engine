@@ -42,8 +42,17 @@ jobs:
         export GOARCH=386
         ./run_tests.sh
     - name: deadcode
+      # Police the pure-Go engine path for genuinely dead code. The entry
+      # points must cover every real consumer of the engine API, otherwise
+      # legitimately-used code is flagged: the deterministic-execution hooks
+      # in seed.go are consumed by ./cmd/harvest-reference (and backend/
+      # tamago), not by the webserver demo, and embedwad.DOOM1WAD is a
+      # build-tagged stub exercised only by its own package test. We pass
+      # those roots plus -test so deadcode builds the true reachability
+      # graph. The cgo SDL/ebitengine demos are deliberately excluded here
+      # (they don't build without SDL); they are covered by "Build example".
       run: |
-        DEAD=$(deadcode ./example/webserver)
+        DEAD=$(deadcode -test ./example/webserver ./cmd/harvest-reference ./embedwad)
         if [ -n "$DEAD" ]; then
           echo "deadcode found the following unused code:"
           echo "$DEAD"

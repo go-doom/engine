@@ -4945,7 +4945,6 @@ func d_DoAdvanceDemo() {
 		g_DeferedPlayDemo("demo3")
 		break
 		// THE DEFINITIVE DOOM Special Edition demo
-		fallthrough
 	case 6:
 		g_DeferedPlayDemo("demo4")
 		break
@@ -5847,7 +5846,6 @@ func d_GameMissionString(mission gamemission_t) string {
 	case strife:
 		return "strife"
 	}
-	return ""
 }
 
 const ANG2701 = 3221225472
@@ -7418,7 +7416,6 @@ func g_DoLoadLevel() {
 				skytexturename = "SKY3"
 			}
 		}
-		skytexturename = skytexturename
 		skytexture = r_TextureNumForName(skytexturename)
 	}
 	if wipegamestate == gs_LEVEL {
@@ -8517,7 +8514,6 @@ func g_VanillaVersionCode() int32 {
 	default: // All other versions are variants on v1.9:
 		return 109
 	}
-	return 0
 }
 
 func g_BeginRecording() {
@@ -22153,12 +22149,10 @@ func p_LookForPlayers(actor *mobj_t, allaround boolean) boolean {
 		}
 		actor.Ftarget = player.Fmo
 		return 1
-		goto _1
 	_1:
 		;
 		actor.Flastlook = (actor.Flastlook + 1) & 3
 	}
-	return 0
 }
 
 // C documentation
@@ -23069,7 +23063,6 @@ func a_BossDeath(mo *mobj_t) {
 			case 8:
 				ev_DoFloor(&line_t{Ftag: 666}, int32(lowerFloorToLowest))
 				return
-				break
 			}
 		}
 	}
@@ -23950,7 +23943,6 @@ func p_TouchSpecialThing(special *mobj_t, toucher *mobj_t) {
 		player.Fmessage = "Picked up the MegaArmor!"
 		break
 		// bonus items
-		fallthrough
 	case spr_BON1:
 		player.Fhealth++ // can go over 100%
 		if player.Fhealth > DEH_DEFAULT_MAX_HEALTH {
@@ -23991,7 +23983,6 @@ func p_TouchSpecialThing(special *mobj_t, toucher *mobj_t) {
 		break
 		// cards
 		// leave cards for everyone
-		fallthrough
 	case spr_BKEY:
 		if player.Fcards[it_bluecard] == 0 {
 			player.Fmessage = "Picked up a blue keycard."
@@ -24047,7 +24038,6 @@ func p_TouchSpecialThing(special *mobj_t, toucher *mobj_t) {
 		}
 		return
 		// medikits, heals
-		fallthrough
 	case spr_STIM:
 		if p_GiveBody(player, 10) == 0 {
 			return
@@ -24064,7 +24054,6 @@ func p_TouchSpecialThing(special *mobj_t, toucher *mobj_t) {
 		}
 		break
 		// power ups
-		fallthrough
 	case spr_PINV:
 		if p_GivePower(player, int32(pw_invulnerability)) == 0 {
 			return
@@ -24106,7 +24095,6 @@ func p_TouchSpecialThing(special *mobj_t, toucher *mobj_t) {
 		sound = int32(sfx_getpow)
 		break
 		// ammo
-		fallthrough
 	case spr_CLIP:
 		if special.Fflags&mf_DROPPED != 0 {
 			if p_GiveAmmo(player, am_clip, 0) == 0 {
@@ -24166,7 +24154,6 @@ func p_TouchSpecialThing(special *mobj_t, toucher *mobj_t) {
 		player.Fmessage = "Picked up a backpack full of ammo!"
 		break
 		// weapons
-		fallthrough
 	case spr_BFUG:
 		if p_GiveWeapon(player, wp_bfg, 0) == 0 {
 			return
@@ -25174,7 +25161,6 @@ func ptr_SlideTraverse(in *intercept_t) boolean {
 	return 1
 	// the line does block movement,
 	// see if it is closer than best so far
-	goto isblocking
 isblocking:
 	;
 	if in.Ffrac < bestslidefrac {
@@ -25387,7 +25373,6 @@ func ptr_ShootTraverse(in *intercept_t) boolean {
 		// shot continues
 		return 1
 		// hit line
-		goto hitline
 	hitline:
 		;
 		// position a bit closer
@@ -30869,7 +30854,6 @@ func p_CrossSpecialLine(linenum int32, side int32, thing *mobj_t) {
 		line.Fspecial = 0
 		break
 		// RETRIGGERS.  All from here till end.
-		fallthrough
 	case 72:
 		// Ceiling Crush
 		ev_DoCeiling(line, int32(lowerAndCrush))
@@ -31677,7 +31661,6 @@ func p_UseSpecialLine(thing *mobj_t, line *line_t, side int32) boolean {
 			// UNUSED?
 		default:
 			return 0
-			break
 		}
 	}
 	// Switches that other things can activate.
@@ -31696,7 +31679,6 @@ func p_UseSpecialLine(thing *mobj_t, line *line_t, side int32) boolean {
 		case 34: // MANUAL YELLOW
 		default:
 			return 0
-			break
 		}
 	}
 	// do something
@@ -31728,7 +31710,6 @@ func p_UseSpecialLine(thing *mobj_t, line *line_t, side int32) boolean {
 		// EV_SlidingDoor (line, thing);
 		// break;
 		// SWITCHES
-		fallthrough
 	case 7:
 		// Build Stairs
 		if ev_BuildStairs(line, int32(build8)) != 0 {
@@ -31870,7 +31851,6 @@ func p_UseSpecialLine(thing *mobj_t, line *line_t, side int32) boolean {
 		}
 		break
 		// BUTTONS
-		fallthrough
 	case 42:
 		// Close Door
 		if ev_DoDoor(line, int32(vld_close)) != 0 {
@@ -32679,7 +32659,6 @@ clippass:
 	;
 	r_ClipPassWallSegment(x1, x2-1)
 	return
-	goto clipsolid
 clipsolid:
 	;
 	r_ClipSolidWallSegment(x1, x2-1)
@@ -34291,7 +34270,6 @@ func r_PointToAngle(x fixed_t, y fixed_t) angle_t {
 			}
 		}
 	}
-	return 0
 }
 
 func r_PointToAngle2(x1 fixed_t, y1 fixed_t, x2 fixed_t, y2 fixed_t) angle_t {
@@ -40931,8 +40909,6 @@ func w_AddFile(filename string) fs.File {
 			}
 			// ???modifiedgame = true;
 		}
-		wadinfo.Fnumlumps = wadinfo.Fnumlumps
-		wadinfo.Finfotableofs = wadinfo.Finfotableofs
 		length = int32(wadinfo.Fnumlumps * 16)
 		fileinfo = make([]filelump_t, wadinfo.Fnumlumps)
 		w_Read(wad_file, uint32(wadinfo.Finfotableofs), (uintptr)(unsafe.Pointer(&fileinfo[0])), uint64(length))
