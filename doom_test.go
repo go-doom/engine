@@ -51,6 +51,23 @@ func (b *bufferedWriteCloser) Close() error {
 	return b.Closer.Close()
 }
 
+// requireEngineHarness skips the calling test unless the host prerequisites
+// for a full headless engine run are present: the shareware IWAD on disk
+// (fetched by the amd64 "Tests" workflow) and the ffmpeg binary used to
+// record the frame movie. These integration tests are fully exercised on
+// amd64 by go.yml; on the 6-arch CGO=0 lane the minimal qemu containers have
+// neither dependency, so the tests skip there instead of failing. When both
+// prerequisites are present behaviour is unchanged -- the test runs as before.
+func requireEngineHarness(t *testing.T) {
+	t.Helper()
+	if _, err := os.Stat("doom1.wad"); err != nil {
+		t.Skipf("skipping: doom1.wad not present (%v)", err)
+	}
+	if _, err := exec.LookPath("ffmpeg"); err != nil {
+		t.Skipf("skipping: ffmpeg not found in PATH (%v)", err)
+	}
+}
+
 func ffmpegSaver(filename string) (io.WriteCloser, error) {
 	args := []string{
 		"ffmpeg",
@@ -227,6 +244,7 @@ func (d *doomTestHeadless) InsertKeyChange(Key uint8, pressed bool) {
 
 // Run the demo at super speed to make sure it all goes ok
 func TestDoomDemo(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	game := &doomTestHeadless{
 		t: t,
@@ -270,6 +288,7 @@ func loadPNG(filename string) (image.Image, error) {
 }
 
 func TestLoadSave(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	var imgPlayedGame, imgNewGame, imgLoadedGame *image.RGBA
 	game := &doomTestHeadless{
@@ -369,6 +388,7 @@ func TestLoadSave(t *testing.T) {
 }
 
 func TestDoomRandom(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	game := &doomTestHeadless{
 		t: t,
@@ -443,6 +463,7 @@ func compareScreen(game *doomTestHeadless, testdataPrefix string, percentOk floa
 }
 
 func TestDoomLevels(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	var game *doomTestHeadless
 	game = &doomTestHeadless{
@@ -487,6 +508,7 @@ func TestDoomLevels(t *testing.T) {
 }
 
 func TestDoomMap(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	game := &doomTestHeadless{
 		t: t,
@@ -525,6 +547,7 @@ func TestDoomMap(t *testing.T) {
 }
 
 func TestWeapons(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	game := &doomTestHeadless{
 		t: t,
@@ -603,6 +626,7 @@ func confirmMenu(t *testing.T, game *doomTestHeadless, name string) {
 
 // TestMenus walks through the menus and checks the screenshots
 func TestMenus(t *testing.T) {
+	requireEngineHarness(t)
 	dg_run_full_speed = true
 	game := &doomTestHeadless{
 		t: t,
