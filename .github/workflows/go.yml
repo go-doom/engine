@@ -51,8 +51,15 @@ jobs:
       # those roots plus -test so deadcode builds the true reachability
       # graph. The cgo SDL/ebitengine demos are deliberately excluded here
       # (they don't build without SDL); they are covered by "Build example".
+      #
+      # The pure-Go music (music/...) and netgame packages are libraries
+      # consumed via runtime func-pointer indirection (the engine's
+      # music_module) and by the cgo frontends (excluded above), so they are
+      # added as their own -test roots -- their comprehensive package tests
+      # anchor the true reachability graph -- alongside the root engine
+      # package (.) whose test exercises the OPL music bridge / ReadMusicPCM.
       run: |
-        DEAD=$(deadcode -test ./example/webserver ./cmd/harvest-reference ./embedwad)
+        DEAD=$(deadcode -test . ./example/webserver ./cmd/harvest-reference ./embedwad ./music/... ./netgame)
         if [ -n "$DEAD" ]; then
           echo "deadcode found the following unused code:"
           echo "$DEAD"
