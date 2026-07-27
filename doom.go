@@ -17340,8 +17340,16 @@ func initSfxModule(use_sfx_prefix boolean) {
 }
 
 // Initialize music according to snd_musicdevice.
+//
+// The music module itself lives in music_bridge.go (pure-Go OPL2/OPL3 synth
+// driving the DMX GENMIDI bank, matching chocolate-doom's OPL path). It is
+// registered through installMusicModule so this transpiled entry point keeps
+// a one-line hook and the synth stays out of the generated blob.
 
 func initMusicModule() {
+	if installMusicModule != nil {
+		installMusicModule()
+	}
 }
 
 //
@@ -17503,7 +17511,7 @@ func i_ResumeSong() {
 
 func i_RegisterSong(data []byte) uintptr {
 	if music_module != nil {
-		music_module.FRegisterSong(data)
+		return music_module.FRegisterSong(data)
 	}
 	return 0
 }

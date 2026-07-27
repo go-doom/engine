@@ -85,8 +85,38 @@ examples are kept verbatim, so we can rebase against upstream cleanly.
 | Cross-compiles linux/arm64        | yes (CGO=0)                               |
 | Runs shareware DOOM1.WAD          | yes (engine ticks; verified via TestMenus harness) |
 | TamaGo backend wired              | scaffold only; real drivers land in follow-up sprint |
-| Music (MUS -> MIDI)               | out of scope for sprint 1                 |
-| Multiplayer                       | out of scope                              |
+| Music (MUS/MIDI + OPL2/OPL3 synth)| yes -- pure-Go OPL path (see `music/`)    |
+| Multiplayer (netgame lockstep)    | yes -- protocol + lockstep (see `netgame/`)|
+
+## Music and multiplayer (pure Go, CGO=0)
+
+The chocolate-doom-faithful music and netgame paths ship as standalone,
+differentially-tested packages, all CGO-free and building on the six 64-bit
+arches:
+
+| Package            | Role                                                        |
+|--------------------|-------------------------------------------------------------|
+| `music/mus`        | DMX MUS (`D_*` lumps) parse + `mus2mid` MUS->MIDI conversion |
+| `music/midi`       | Standard MIDI File parser (port of `midifile.c`)            |
+| `music/genmidi`    | `GENMIDI` lump (the DMX OPL instrument bank) parser         |
+| `music/opl`        | Nuked OPL3 (Yamaha YMF262) emulator -> PCM                  |
+| `music/oplplayer`  | MIDI + GENMIDI -> OPL register writes -> PCM (`i_oplmusic`) |
+| `netgame`          | classic doomcom/ticcmd lockstep protocol + transport seam  |
+
+The engine installs the OPL synth as its `music_module` (see `music_opl.go`);
+the host frontend pulls synthesised stereo PCM through `gore.ReadMusicPCM`.
+
+**Differential oracles.** `music/mus` conversion is asserted **byte-identical**
+to chocolate-doom's `mus2mid.c` (compiled as an oracle over synthetic MUS
+vectors). `music/opl` is validated **bit-exact** against a Nuked OPL3 C
+register->PCM trace. `music/oplplayer` is checked against a captured
+`i_oplmusic.c` **register-write trace** for `D_INTRO`. `netgame` runs two, three
+and four in-process engines over an in-memory transport and asserts they stay in
+**lockstep with byte-identical per-tic state hashes**; ticcmd serialisation is
+byte-faithful to the engine's own vanilla layout.
+
+Music and multiplayer do not perturb the frame/audio determinism oracles: the
+`oracle/` frames and audio-event log remain byte-equal after wiring.
 
 ## Quick smoke test (host)
 
