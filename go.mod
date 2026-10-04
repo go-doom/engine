@@ -1,6 +1,6 @@
 module github.com/go-doom/engine
 
-go 1.26.4
+go 1.27.1
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.10.4
