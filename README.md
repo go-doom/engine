@@ -80,7 +80,7 @@ examples are kept verbatim, so we can rebase against upstream cleanly.
 | Aspect                            | Status                                    |
 |-----------------------------------|-------------------------------------------|
 | Pure Go (CGO=0)                   | yes (engine + all new code)               |
-| Builds on Go 1.26.4               | yes (lib + tamago backend + pure-Go examples) |
+| Builds on Go 1.27.1               | yes (lib + tamago backend + pure-Go examples) |
 | Cross-compiles linux/amd64        | yes (CGO=0)                               |
 | Cross-compiles linux/arm64        | yes (CGO=0)                               |
 | Runs shareware DOOM1.WAD          | yes (engine ticks; verified via TestMenus harness) |
