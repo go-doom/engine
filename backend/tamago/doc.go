@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-2.0-only
+
 // Package tamago provides a [gore.DoomFrontend] implementation that drives
 // DOOM output and input through cloud-boot's bare-metal virtio device tree.
 //

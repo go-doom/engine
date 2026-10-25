@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// The DOOM engine, from doomgeneric by way of AndreRenaud/gore.
+
 package gore
 
 import (
