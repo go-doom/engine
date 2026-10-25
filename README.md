@@ -4,7 +4,7 @@
 
 [![6-arch CI](https://img.shields.io/badge/CI-amd64%20%C2%B7%20arm64%20%C2%B7%20riscv64%20%C2%B7%20loong64%20%C2%B7%20ppc64le%20%C2%B7%20s390x-success)](https://github.com/go-doom/engine/actions)
 [![CGO](https://img.shields.io/badge/CGO__ENABLED-0-blue)](#)
-[![License](https://img.shields.io/badge/license-BSD--3%20%2F%20GPL--2.0%20engine-informational)](LICENSE)
+[![License](https://img.shields.io/badge/license-GPL--2.0--only-informational)](NOTICE.md)
 
 Pure-Go [DOOM](https://en.wikipedia.org/wiki/Doom_(1993_video_game)) (id Tech 1, 1993)
 engine for bare-metal TamaGo + UEFI under the [cloud-boot](https://github.com/cloud-boot)
@@ -49,10 +49,17 @@ examples are kept verbatim, so we can rebase against upstream cleanly.
 
 ## License boundary
 
-- The DOOM engine (`doom.go`, `doom_test.go`, `LICENSE`) inherits
-  **GPL-2.0-only** from `doomgeneric` / `gore`. All cloud-boot additions
-  in this repository (`backend/tamago`, `internal/embedwad`) are released
-  under the same license, by necessity (linking + derived work).
+- The repository as a whole is **GPL-2.0-only** ([LICENSE](LICENSE)). The
+  DOOM engine (`doom.go`, `doom_test.go`) comes from `doomgeneric` by way
+  of `gore` under GPL-2.0-only, and GPL-2.0 §2 puts a work based on it, as
+  a whole, under the same terms.
+- Each file says which licence it is under, in an `SPDX-License-Identifier`
+  header, and that header is authoritative ([NOTICE.md](NOTICE.md)):
+  - **GPL-2.0-only:** the engine, `backend/`, `cmd/`, `embedwad/`;
+  - **GPL-2.0-or-later:** the music bridge and most of `music/`;
+  - **LGPL-2.1-or-later** ([LICENSE-LGPL-2.1](LICENSE-LGPL-2.1)):
+    `music/opl/`, the Go port of Nuked OPL3;
+  - **BSD-3-Clause** ([LICENSE-BSD](LICENSE-BSD)): `netgame/`.
 - The rest of the cloud-boot stack is **BSD-3-Clause** and is *not*
   affected: cloud-boot's bootloader, runtime, and host components do not
   import this package. The integration happens via a thin separate
