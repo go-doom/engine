@@ -55,7 +55,8 @@ examples are kept verbatim, so we can rebase against upstream cleanly.
   a whole, under the same terms.
 - Each file says which licence it is under, in an `SPDX-License-Identifier`
   header, and that header is authoritative ([NOTICE.md](NOTICE.md)):
-  - **GPL-2.0-only:** the engine, `backend/`, `cmd/`, `embedwad/`;
+  - **GPL-2.0-only:** the engine, `backend/`, `cmd/`, `embedwad/`,
+    `ociblob/`, `wadcheck/`;
   - **GPL-2.0-or-later:** the music bridge and most of `music/`;
   - **LGPL-2.1-or-later** ([LICENSE-LGPL-2.1](LICENSE-LGPL-2.1)):
     `music/opl/`, the Go port of Nuked OPL3;
@@ -75,9 +76,14 @@ examples are kept verbatim, so we can rebase against upstream cleanly.
 |-- doom_test.go                # upstream gore reference-frame tests
 |-- example/                    # upstream gore examples (termdoom, web, ...)
 |-- backend/
-|   `-- tamago/                 # NEW: DoomFrontend over virtio-gpu/sound/input
-|-- internal/
-|   `-- embedwad/               # NEW: io/fs.FS shim over an in-memory WAD
+|   |-- tamago/                 # NEW: DoomFrontend over virtio-gpu/sound/input
+|   `-- wasmbox/                # NEW: DoomFrontend over the wasmbox desktop protocol
+|-- cmd/
+|   `-- doom-wasmbox/           # NEW: the wasmbox desktop client (GOOS=js GOARCH=wasm)
+|-- embedwad/                   # NEW: io/fs.FS shim over an in-memory WAD
+|-- ociblob/                    # NEW: pull + verify one file from an OCI /v2 mirror
+|-- wadcheck/                   # NEW: bound a WAD's header + lump directory (fuzzed)
+|-- state.go                    # NEW: read-only game-state snapshot (gore.Observe)
 |-- PORT.md                     # Adaptation plan (read this)
 `-- README.md
 ```
@@ -94,6 +100,48 @@ examples are kept verbatim, so we can rebase against upstream cleanly.
 | TamaGo backend wired              | scaffold only; real drivers land in follow-up sprint |
 | Music (MUS/MIDI + OPL2/OPL3 synth)| yes -- pure-Go OPL path (see `music/`)    |
 | Multiplayer (netgame lockstep)    | yes -- protocol + lockstep (see `netgame/`)|
+| wasmbox desktop client            | yes -- `cmd/doom-wasmbox`, Freedoom, software renderer (see below) |
+
+## Doom in the wasmbox desktop
+
+`cmd/doom-wasmbox` runs the engine as a window of the
+[wasmbox](https://github.com/wasmdesk/wasmbox) web desktop, beside Quake
+(launch it from the root menu: *Applications -> Doom*). It is a Web Worker
+client of the wasmbox protocol (`backend/wasmbox`): each 320x200 frame is
+scaled to 640x480 (4:3, the proportions Doom was drawn for), copied into the
+window's SharedArrayBuffer under the protocol's seqlock and committed; the
+compositor scale-fits it to the window and locks the resize grip to 4:3.
+Keys are the classic ones (arrows, Ctrl fire, Space use, Shift run, Alt
+strafe, `,` `.` strafe, Escape menu, Enter, digits for weapons); the left
+mouse button fires and the right one uses.
+
+Game data is [Freedoom: Phase 1](https://freedoom.github.io) 0.13.0
+(BSD-3-Clause), never committed anywhere: the wasmbox site workflow downloads
+the official release, checks it against the release's signed `CHECKSUM` file,
+and serves `freedoom1.wad` from a same-origin `/v2/doom-assets` OCI mirror.
+The client pulls it with `ociblob` and trusts nothing it receives:
+
+- it fetches only from its own origin (the worker publishes the site root;
+  the client refuses any other origin);
+- the WAD's sha256 is pinned in the binary (`main.WADSHA256`), the manifest
+  must name exactly that digest, and the blob's size and sha256 are
+  recomputed (64 MiB cap);
+- `wadcheck` then bounds the header and every lump offset and size against
+  the file and the engine's 4095-lump table before the engine opens it --
+  the transpiled loader itself has no bounds checks. Both parsers are fuzzed
+  in CI.
+
+Build it with `GOOS=js GOARCH=wasm go build ./cmd/doom-wasmbox`; the wasmbox
+repository's Pages and CI workflows do that and assemble the mirror. The
+client logs `DOOM: ...` lines (`DOOM: state=...` on every game-state change,
+`DOOM: fps=...` every five seconds) that wasmbox's browser tests assert on.
+
+Sound effects (DMX lumps, decoded and panned as chocolate-doom does) and OPL
+music are wired to WebAudio when the worker has an `AudioContext`. Chromium
+(headless and headed, measured) gives a dedicated worker none, so there the
+client runs silent and logs `audio=unavailable` (and passes `-nosound
+-nomusic`, sparing the OPL synthesis); sound there needs a main-thread audio
+relay in wasmbox.
 
 ## Music and multiplayer (pure Go, CGO=0)
 

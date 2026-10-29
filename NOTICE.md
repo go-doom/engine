@@ -12,7 +12,7 @@ header, and that header is authoritative for the file:
 
 | licence | where | text |
 |:--|:--|:--|
-| `GPL-2.0-only` | the engine (`doom.go`, `doom_test.go`), `backend/`, `cmd/`, `embedwad/`, `seed.go` | `LICENSE` |
+| `GPL-2.0-only` | the engine (`doom.go`, `doom_test.go`), `backend/`, `cmd/`, `embedwad/`, `ociblob/`, `wadcheck/`, `seed.go`, `state.go` | `LICENSE` |
 | `GPL-2.0-or-later` | the music bridge (`music_bridge.go`, `music_opl.go`) and most of `music/` | `LICENSE` |
 | `LGPL-2.1-or-later` | `music/opl/`, the Go port of Nuked OPL3 by Nuke.YKT | `LICENSE-LGPL-2.1` |
 | `BSD-3-Clause` | `netgame/` | `LICENSE-BSD` |

@@ -64,6 +64,24 @@ jobs:
       - name: go test
         run: go test $PURE_GO_PKGS
 
+      # The wasmbox client (cmd/doom-wasmbox + backend/wasmbox) only links for
+      # the browser; its js/wasm files are invisible to the host builds above.
+      - name: vet + build the wasmbox client (js/wasm)
+        env:
+          GOOS: js
+          GOARCH: wasm
+        run: |
+          go vet -unsafeptr=false ./backend/wasmbox/ ./cmd/doom-wasmbox/ ./ociblob/ ./wadcheck/
+          go build -trimpath -ldflags "-s -w" -o "$RUNNER_TEMP/doom.wasm" ./cmd/doom-wasmbox/
+          ls -l "$RUNNER_TEMP/doom.wasm"
+
+      # The WAD directory validator and the OCI manifest reader take untrusted
+      # bytes from the network: fuzz each for a while on every change.
+      - name: fuzz the untrusted-input parsers
+        run: |
+          go test -run '^$' -fuzz '^FuzzValidate$' -fuzztime 30s ./wadcheck/
+          go test -run '^$' -fuzz '^FuzzManifest$' -fuzztime 30s ./ociblob/
+
   test-arm64:
     name: test (arm64, native CGO=0)
     runs-on: ubuntu-26.04-arm
