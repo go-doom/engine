@@ -109,6 +109,11 @@ func NewClient(title string, w, h int, lockAspect float64) (*Frontend, error) {
 	if lockAspect > 0 {
 		hello.Set("lock_aspect", lockAspect)
 	}
+	// Ask the compositor not to match its own chords while this window has
+	// the keyboard (Wayland's keyboard-shortcuts-inhibit analog): Doom fires
+	// with Ctrl and strafes with Alt, and F3 loads a game. A compositor that
+	// does not know the field ignores it.
+	hello.Set("inhibit_shortcuts", true)
 	f.post.Invoke(hello)
 
 	got := <-welcome
