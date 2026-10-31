@@ -137,11 +137,18 @@ client logs `DOOM: ...` lines (`DOOM: state=...` on every game-state change,
 `DOOM: fps=...` every five seconds) that wasmbox's browser tests assert on.
 
 Sound effects (DMX lumps, decoded and panned as chocolate-doom does) and OPL
-music are wired to WebAudio when the worker has an `AudioContext`. Chromium
-(headless and headed, measured) gives a dedicated worker none, so there the
-client runs silent and logs `audio=unavailable` (and passes `-nosound
--nomusic`, sparing the OPL synthesis); sound there needs a main-thread audio
-relay in wasmbox.
+music play in the wasmbox window through wasmbox's audio relay. A dedicated
+worker has no `AudioContext`, so the client mixes the effects (`Mixer`) with the
+OPL music at 44.1 kHz and writes interleaved float32 PCM into a lock-free
+SharedArrayBuffer ring
+([`github.com/wasmdesk/wasmbox/audioring`](https://github.com/wasmdesk/wasmbox/tree/main/audioring));
+the wasmbox page plays it from an AudioWorklet, resuming on the first click or
+key. The ring is 4096 frames (93 ms) and is kept about half full. The client
+logs `audio=relay` (`running` once the page has played frames). A worker-scope
+`AudioContext`, where one exists, remains the fallback; with neither, the client
+runs silent and logs `audio=unavailable`. wasmbox's `test/probe-audio.mjs`
+checks it in headless Chromium against the real client, including a planted
+negative with the writer disabled.
 
 ## Music and multiplayer (pure Go, CGO=0)
 
