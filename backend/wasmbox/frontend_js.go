@@ -44,7 +44,7 @@ type Frontend struct {
 
 	queue  Queue
 	closed atomic.Bool
-	audio  *webAudio
+	audio  audioSink
 
 	lastYield time.Time
 	frames    int
@@ -136,7 +136,17 @@ func NewClient(title string, w, h int, lockAspect float64) (*Frontend, error) {
 	f.commit.Set("window_id", f.windowID)
 	f.commit.Set("damage", damage)
 
-	f.audio = newWebAudio()
+	// Under the wasmbox compositor the sound goes through the relay: a worker
+	// has no AudioContext, so PCM is written into a SharedArrayBuffer ring the
+	// page plays from an AudioWorklet. A worker-scope AudioContext remains the
+	// fallback. (Assign only non-nil values: a nil *webAudio in the interface
+	// would read as a live sink.)
+	noWrite := self.Get("__wasmboxNoAudioWrite").Truthy() // planted-negative hook for the e2e
+	if ra := newRingAudio(f.windowID, noWrite); ra != nil {
+		f.audio = ra
+	} else if wa := newWebAudio(); wa != nil {
+		f.audio = wa
+	}
 	f.lastYield = time.Now()
 	return f, nil
 }
