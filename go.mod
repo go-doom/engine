@@ -8,7 +8,7 @@ require (
 	github.com/olegfedoseev/image-diff v0.0.0-20171116094004-897a4e73dfd6
 	github.com/veandco/go-sdl2 v0.4.40
 	github.com/wasmdesk/wasmbox/audioring v0.1.0
-	golang.org/x/term v0.47.0
+	golang.org/x/term v0.48.0
 )
 
 require (
@@ -18,5 +18,5 @@ require (
 	github.com/ebitengine/purego v0.11.3 // indirect
 	github.com/jfreymuth/pulse v0.1.3 // indirect
 	golang.org/x/sync v0.22.0 // indirect
-	golang.org/x/sys v0.49.0 // indirect
+	golang.org/x/sys v0.50.0 // indirect
 )
